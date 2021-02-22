@@ -5,9 +5,11 @@ import "./App.css";
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
+import Header from "./components/header/header.component";
 
-const HatsPage = () => (
+const HatsPage = (props) => (
   <div>
+    {console.log(props)}
     <h1>Hats Page</h1>
   </div>
 );
@@ -15,6 +17,7 @@ const HatsPage = () => (
 function App() {
   return (
     <div>
+      <Header />
       <Switch>
         <Route component={HatsPage} path="/shop/hats" />
         <Route component={ShopPage} path="/shop" />
