@@ -14,7 +14,6 @@ import "./header.styles.scss";
 
 const Header = ({ currentUser, toggleCartHidden }) => (
   <div className="header">
-    {console.log(currentUser)}
     <Link className="logo-container" to="/">
       <Logo className="logo" />
     </Link>
