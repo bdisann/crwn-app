@@ -11,6 +11,9 @@ import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
 import "./header.styles.scss";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../redux/user/user.selector";
+import { selectCartToggle } from "../../redux/cart/cart.selector";
 
 const Header = ({ currentUser, toggleCartHidden }) => (
   <div className="header">
@@ -18,6 +21,16 @@ const Header = ({ currentUser, toggleCartHidden }) => (
       <Logo className="logo" />
     </Link>
     <div className="options">
+      {currentUser?.displayName ? (
+        <div
+          className="option"
+          style={{
+            cursor: "default",
+          }}
+        >
+          <b>HALO, {currentUser.displayName.toUpperCase()}</b>
+        </div>
+      ) : null}
       <Link className="option" to="/shop">
         SHOP
       </Link>
@@ -39,9 +52,9 @@ const Header = ({ currentUser, toggleCartHidden }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-  toggleCartHidden: state.cart.hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  toggleCartHidden: selectCartToggle,
 });
 
 export default connect(mapStateToProps)(Header);
